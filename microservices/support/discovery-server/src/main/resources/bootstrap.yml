@@ -1,0 +1,6 @@
+
+spring:
+    application:
+        name: discovery-server
+    jmx:
+        default-domain: discovery-server

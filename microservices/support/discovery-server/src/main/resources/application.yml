@@ -1,0 +1,25 @@
+server:
+  port: 9011
+  contextPath: /discovery-server
+
+eureka:
+    server:
+        enableSelfPreservation: true
+    instance:
+        hostname: localhost
+    client:
+        healthcheck:
+            enabled: true
+        register-with-eureka: false
+        fetch-registry: false
+
+    appInfo:
+        replicate:
+            interval: 3
+        initial:
+            replicate:
+                time: 3
+logging:
+  level:
+    com.netflix.discovery: 'INFO'
+    org.springframework.cloud: 'OFF'

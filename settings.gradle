@@ -1,0 +1,11 @@
+rootProject.name = 'spring-microservices'
+
+include ':microservices:support:config-server'
+findProject(':microservices:support:config-server')?.name = 'config-server'
+
+include ':microservices:support:discovery-server'
+findProject(':microservices:support:discovery-server')?.name = 'discovery-server'
+
+include 'microservices:core:database-service'
+findProject(':microservices:core:database-service')?.name = 'database-service'
+

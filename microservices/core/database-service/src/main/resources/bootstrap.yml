@@ -1,0 +1,12 @@
+spring:
+    application:
+        name: database-service
+    jmx:
+        default-domain: database-service
+
+    profiles:
+        active: #spring.profiles.active#
+
+    cloud:
+        config:
+            uri: http://localhost:9010/config-server

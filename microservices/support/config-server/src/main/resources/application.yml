@@ -1,0 +1,42 @@
+server:
+  port: 9010
+  servlet:
+    contextPath: /config-server
+
+spring:
+  profiles:
+    active: native
+
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: file://${user.home}/Projects/config
+
+management:
+    context-path: /config-server
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+
+eureka:
+    instance:
+        statusPageUrlPath: ${management.context-path}/actuator/info
+        healthCheckUrlPath: ${management.context-path}/actuator/health
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://localhost:9011/eureka/
+        healthcheck: true
+
+info:
+    project:
+        name: Configuration MicroService
+        version: 1.1.0
+
+#logging:
+#    level:
+#      com.netflix.discovery: 'OFF'
+#      org.springframework.cloud: 'OFF'

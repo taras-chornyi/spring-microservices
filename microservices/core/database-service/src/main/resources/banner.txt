@@ -1,0 +1,3 @@
+
+${AnsiColor.BRIGHT_BLUE}:: Database MicroService :: Running Spring Boot ${spring-boot.version} ::
+:: http://projects.spring.io/spring-cloud ::${AnsiColor.DEFAULT}
