@@ -1,9 +1,13 @@
 package com.chornyi.microservices;
 
+import com.chornyi.microservices.config.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +20,7 @@ import java.net.UnknownHostException;
 @EnableDiscoveryClient
 @SpringBootApplication
 @Slf4j
+@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 public class Application extends SpringBootServletInitializer {
 
     @Override

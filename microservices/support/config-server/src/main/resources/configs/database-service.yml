@@ -1,0 +1,80 @@
+management:
+  context-path: /
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+info:
+    project:
+        name: Database MicroService
+        version: 0.0.1
+
+eureka:
+    instance:
+        statusPageUrlPath: ${management.context-path}/actuator/info
+        healthCheckUrlPath: ${management.context-path}/actuator/health
+
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://localhost:9011/eureka/
+        healthcheck: true
+
+logging:
+    level:
+        com.netflix.discovery: 'OFF'
+        org.springframework.cloud: 'OFF'
+
+server:
+    port: 9000
+    servlet:
+        contextPath: /
+
+spring:
+    profiles:
+        active: dev
+        include: swagger
+
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
+    jackson:
+        serialization.indent_output: true
+
+    messages:
+        cache-seconds: 1
+    thymeleaf:
+        cache: false
+
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:h2:mem:database:service;DB_CLOSE_DELAY=-1
+        username: sa
+        password: 
+
+    h2:
+        console:
+            enabled: true
+            settings:
+                web-allow-others: true
+
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        show-sql: true
+        properties:
+            hibernate.id.new_generator_mappings: true
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+
+liquibase:
+    contexts: h2
+
+
+application:
+

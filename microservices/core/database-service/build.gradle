@@ -4,6 +4,8 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        jcenter()
+        maven { url "http://repo.spring.io/plugins-release" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -27,6 +29,7 @@ bootJar {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+assert System.properties['java.specification.version'] == '1.8'
 
 repositories {
     jcenter()
@@ -37,6 +40,26 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-undertow')
+
+    compile('javax.transaction:javax.transaction-api')
+    compile('org.hibernate:hibernate-entitymanager')
+    compile('org.hibernate:hibernate-envers')
+    compile('org.hibernate.validator:hibernate-validator')
+
+    compile('commons-io:commons-io:2.6')
+    compile('org.apache.commons:commons-lang3')
+
+    compile('org.liquibase:liquibase-core')
+    compile('com.mattbertolini:liquibase-slf4j:2.0.0')
+    compile('org.springframework.boot:spring-boot-devtools')
+    compile('com.h2database:h2')
+
+    compile ("io.springfox:springfox-swagger2:2.9.2") {
+        exclude module: 'mapstruct'
+    }
+    compile('io.springfox:springfox-swagger-ui:2.9.2')
 
     compileOnly('org.projectlombok:lombok:1.18.0')
     testCompile('org.springframework.boot:spring-boot-starter-test')
