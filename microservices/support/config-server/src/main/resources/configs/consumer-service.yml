@@ -1,0 +1,54 @@
+management:
+  context-path: /
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+info:
+    project:
+        name: Consumer MicroService
+        version: 0.0.1
+
+eureka:
+    instance:
+        statusPageUrlPath: ${management.context-path}/actuator/info
+        healthCheckUrlPath: ${management.context-path}/actuator/health
+
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://localhost:9011/eureka/
+        healthcheck: true
+
+logging:
+    level:
+        com.netflix.discovery: 'OFF'
+        org.springframework.cloud: 'OFF'
+
+server:
+    port: 9001
+    servlet:
+        contextPath: /
+
+spring:
+    profiles:
+        active: dev
+        include: swagger
+
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
+    jackson:
+        serialization.indent_output: true
+
+    messages:
+        cache-seconds: 1
+    thymeleaf:
+        cache: false
+
+application:
+
